@@ -117,6 +117,21 @@ public class BookManagerControllerTests
         result.Value.Should().Be(null);
     }
 
+    [Test]
+    public void AddBook_With_Existing_ID_Return_Error()
+    {
+        //Arrange
+        var newBook = new Book() { Id = 1, Title = "Book Four", Description = "This is the description for Book Four", Author = "Person Four", Genre = Genre.Education };
+
+        _mockBookManagementService.Setup(b => b.Create(newBook)).Returns(newBook);
+
+        //Act
+        var result = _controller.AddBook(newBook);
+
+        //Assert
+        result.Value.Should().Be(null);
+    }
+
     private static List<Book> GetTestBooks()
     {
         return new List<Book>
