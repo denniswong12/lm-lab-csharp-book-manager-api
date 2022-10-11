@@ -1,4 +1,5 @@
 ﻿using BookManagerApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManagerApi.Services
 {
@@ -36,6 +37,14 @@ namespace BookManagerApi.Services
 
             _context.SaveChanges();
             return book;
+        }
+
+        public void Delete(long id)
+        {
+            var existingBookFound = FindBookById(id);
+
+            _context.Entry(existingBookFound).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
         public Book FindBookById(long id)
