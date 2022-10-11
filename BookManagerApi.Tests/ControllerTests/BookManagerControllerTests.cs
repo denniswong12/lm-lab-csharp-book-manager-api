@@ -132,6 +132,23 @@ public class BookManagerControllerTests
         result.Value.Should().Be(null);
     }
 
+    [Test]
+    public void DeleteBookById_With_Invalid_ID_Return_Error()
+    {
+        //Arrange
+        long existingBookId = 100;
+        Book existingBookFound = GetTestBooks()
+            .FirstOrDefault(b => b.Id.Equals(existingBookId));
+
+        _mockBookManagementService.Setup(b => b.FindBookById(existingBookId)).Returns(existingBookFound);
+
+        //Act
+        var result = _controller.DeleteBookById(existingBookId);
+
+        //Assert
+        result.Should().BeOfType(typeof(NotFoundResult));
+    }
+
     private static List<Book> GetTestBooks()
     {
         return new List<Book>
