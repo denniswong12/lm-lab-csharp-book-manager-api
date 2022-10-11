@@ -104,6 +104,19 @@ public class BookManagerControllerTests
         result.Should().BeOfType(typeof(NoContentResult));
     }
 
+    [Test]
+    public void GetBookById_With_Invalid_Returns_Error_Message()
+    {
+        //Arrange
+        long existingBookId = 100;
+
+        //Act
+        var result = _controller.GetBookById(existingBookId);
+
+        //Assert
+        result.Value.Should().Be(null);
+    }
+
     private static List<Book> GetTestBooks()
     {
         return new List<Book>
