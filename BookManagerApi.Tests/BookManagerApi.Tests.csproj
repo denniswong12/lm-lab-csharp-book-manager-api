@@ -26,8 +26,12 @@
     <None Remove="FluentAssertions" />
     <None Remove="Moq" />
     <None Remove="FluentAssertions.AspNetCore.Mvc" />
+    <None Remove="ModelsTests\" />
+    <None Remove="ServicesTests\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ControllerTests\" />
+    <Folder Include="ModelsTests\" />
+    <Folder Include="ServicesTests\" />
   </ItemGroup>
 </Project>

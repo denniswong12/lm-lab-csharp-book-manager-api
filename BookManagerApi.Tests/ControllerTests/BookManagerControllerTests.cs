@@ -87,6 +87,23 @@ public class BookManagerControllerTests
         result.Should().BeOfType(typeof(ActionResult<Book>));
     }
 
+    [Test]
+    public void DeleteBookById_Delete_Correct_Book()
+    {
+        //Arrange
+        long existingBookId = 2;
+        Book existingBookFound = GetTestBooks()
+            .FirstOrDefault(b => b.Id.Equals(existingBookId));
+
+        _mockBookManagementService.Setup(b => b.FindBookById(existingBookId)).Returns(existingBookFound);
+
+        //Act
+        var result = _controller.DeleteBookById(existingBookId);
+
+        //Assert
+        result.Should().BeOfType(typeof(NoContentResult));
+    }
+
     private static List<Book> GetTestBooks()
     {
         return new List<Book>
