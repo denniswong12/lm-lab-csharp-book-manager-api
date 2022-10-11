@@ -27,6 +27,10 @@ namespace BookManagerApi.Controllers
         public ActionResult<Book> GetBookById(long id)
         {
             var book = _bookManagementService.FindBookById(id);
+            if (book == null)
+            {
+                return NotFound($"No Book with id: {id}. Please try with another book id.");
+            }
             return book;
         }
 
