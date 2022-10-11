@@ -21,6 +21,9 @@ namespace BookManagerApi.Services
 
         public Book Create(Book book)
         {
+            if (BookExists(book.Id))
+                return null;
+
             _context.Add(book);
             _context.SaveChanges();
             return book;

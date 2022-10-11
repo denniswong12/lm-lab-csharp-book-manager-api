@@ -48,7 +48,11 @@ namespace BookManagerApi.Controllers
         [HttpPost]
         public ActionResult<Book> AddBook(Book book)
         {
-            _bookManagementService.Create(book);
+            var returnBook = _bookManagementService.Create(book);
+            if (returnBook == null)
+            {
+                return BadRequest($"Book ID: {book.Id} alreday exists. Please try to add book with another id.");
+            }
             return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
         }
 
