@@ -29,7 +29,7 @@ namespace BookManagerApi.Controllers
             var book = _bookManagementService.FindBookById(id);
             if (book == null)
             {
-                return NotFound($"No Book with id: {id}. Please try with another book id.");
+                return BadRequest($"No Book with id: {id}. Please try to find book with another id.");
             }
             return book;
         }

@@ -42,12 +42,14 @@ namespace BookManagerApi.Services
             return book;
         }
 
-        public void Delete(long id)
+        public Book Delete(long id)
         {
             var existingBookFound = FindBookById(id);
-
+            
             _context.Entry(existingBookFound).State = EntityState.Deleted;
+
             _context.SaveChanges();
+            return existingBookFound;
         }
 
         public Book FindBookById(long id)

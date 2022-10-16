@@ -10,6 +10,6 @@ namespace BookManagerApi.Services
         Book Update(long id, Book book);
         Book FindBookById(long id);
         bool BookExists(long id);
-        void Delete(long id);
+        Book Delete(long id);
     }
 }
